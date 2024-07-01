@@ -50,3 +50,19 @@ if (location.hash) {
 		}
 	}
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+	const searchButton = document.getElementById('searchButton');
+
+	if (searchButton) {
+		searchButton.addEventListener('mouseup', function (event) {
+			if (event.button === 1) { // Middle mouse button
+				event.preventDefault();
+				const form = searchButton.closest('form');
+				const searchParams = new URLSearchParams(new FormData(form)).toString();
+				const searchUrl = `${form.action}?${searchParams}`;
+				window.open(searchUrl, '_blank');
+			}
+		});
+	}
+});
